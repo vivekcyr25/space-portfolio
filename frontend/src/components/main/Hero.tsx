@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { getAssetPath } from "@/utils/assetPath";
 
-const TITLES = ["Vivek Sharma", "Aspiring Software Enthusiast", "AI System Architect"];
+const TITLES = ["VIVEK SHARMA", "ASPIRING SOFTWARE ENTHUSIAST", "AI SYSTEM ARCHITECT"];
 
 const Hero = () => {
   const [titleIndex, setTitleIndex] = useState(0);
@@ -21,13 +21,13 @@ const Hero = () => {
     if (typedText.length < currentTitle.length) {
       const timeoutId = window.setTimeout(() => {
         setTypedText(currentTitle.slice(0, typedText.length + 1));
-      }, 75);
+      }, 120);
       return () => window.clearTimeout(timeoutId);
     }
 
     const holdId = window.setTimeout(() => {
       setPhase("hold");
-    }, 900);
+    }, 1400);
     return () => window.clearTimeout(holdId);
   }, [typedText, titleIndex, phase]);
 
@@ -35,7 +35,7 @@ const Hero = () => {
     if (phase !== "hold") return;
     const swipeId = window.setTimeout(() => {
       setPhase("swipe");
-    }, 500);
+    }, 800);
     return () => window.clearTimeout(swipeId);
   }, [phase]);
 
@@ -47,7 +47,7 @@ const Hero = () => {
       setTitleIndex(nextIndex);
       setTypedText("");
       setPhase("typing");
-    }, 360);
+    }, 650);
 
     return () => window.clearTimeout(nextId);
   }, [phase, titleIndex]);
@@ -79,10 +79,10 @@ const Hero = () => {
                 <motion.h1
                   key={`${titleIndex}-${phase}`}
                   initial={{ opacity: 0, x: 0 }}
-                  animate={{ opacity: 1, x: phase === "swipe" ? 26 : 0 }}
-                  exit={{ opacity: 0, x: -26 }}
-                  transition={{ duration: 0.35, ease: "easeInOut" }}
-                  className="heading-syne text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tighter text-white min-h-[1.2em]"
+                  animate={{ opacity: 1, x: phase === "swipe" ? 40 : 0 }}
+                  exit={{ opacity: 0, x: -40 }}
+                  transition={{ duration: 0.55, ease: "easeInOut" }}
+                  className="font-space hero-title-tech text-3xl md:text-5xl lg:text-7xl font-black leading-tight text-white min-h-[1.4em]"
                 >
                   <span className="text-purple-gradient">{typedText}</span>
                   {phase === "typing" && (

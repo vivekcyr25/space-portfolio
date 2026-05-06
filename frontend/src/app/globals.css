@@ -114,6 +114,15 @@ p, span, h1, h2, h3, h4, a, button {
   font-family: var(--font-space-grotesk), sans-serif;
 }
 
+.hero-title-tech {
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 28px rgba(138, 92, 246, 0.45),
+    0 0 45px rgba(59, 130, 246, 0.35);
+}
+
 .text-gradient {
   @apply text-transparent bg-clip-text bg-gradient-to-br from-white via-white/90 to-white/60;
 }
