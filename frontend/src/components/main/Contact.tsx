@@ -1,10 +1,45 @@
 "use client";
 
-import React from "react";
+import React, { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Mail, MapPin, Linkedin, Github, Instagram } from "lucide-react";
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mgodzvge";
+
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitStatus("idle");
+    setIsSubmitting(true);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
+
+      form.reset();
+      setSubmitStatus("success");
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="section-container relative">
       <div className="content-wrapper">
@@ -79,24 +114,34 @@ const Contact = () => {
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/5 blur-[100px] pointer-events-none" />
             
-            <form className="flex flex-col gap-8 relative z-10">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-8 relative z-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="flex flex-col gap-3">
                   <label className="text-[9px] font-black uppercase tracking-[0.3em] text-gray-600 ml-1">Identity</label>
-                  <input type="text" placeholder="Commander Name" className="bg-white/[0.01] border border-white/5 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-purple-500/40 transition-all font-medium" />
+                  <input name="name" type="text" placeholder="Commander Name" required className="bg-white/[0.01] border border-white/5 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-purple-500/40 transition-all font-medium" />
                 </div>
                 <div className="flex flex-col gap-3">
                   <label className="text-[9px] font-black uppercase tracking-[0.3em] text-gray-600 ml-1">Uplink Address</label>
-                  <input type="email" placeholder="name@domain.com" className="bg-white/[0.01] border border-white/5 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-purple-500/40 transition-all font-medium" />
+                  <input name="email" type="email" placeholder="name@domain.com" required className="bg-white/[0.01] border border-white/5 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-purple-500/40 transition-all font-medium" />
                 </div>
               </div>
               <div className="flex flex-col gap-3">
                 <label className="text-[9px] font-black uppercase tracking-[0.3em] text-gray-600 ml-1">Message Payload</label>
-                <textarea rows={5} placeholder="Describe the mission scope..." className="bg-white/[0.01] border border-white/5 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-purple-500/40 transition-all resize-none font-medium"></textarea>
+                <textarea name="message" rows={5} placeholder="Describe the mission scope..." required className="bg-white/[0.01] border border-white/5 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-purple-500/40 transition-all resize-none font-medium"></textarea>
               </div>
-              <button type="submit" className="btn-primary w-full py-5 flex items-center justify-center gap-4">
-                <Send size={18} /> Initiate Transmission
+              <button type="submit" disabled={isSubmitting} className="btn-primary w-full py-5 flex items-center justify-center gap-4 disabled:opacity-60 disabled:cursor-not-allowed">
+                <Send size={18} /> {isSubmitting ? "Transmitting..." : "Initiate Transmission"}
               </button>
+              {submitStatus === "success" && (
+                <p className="text-sm text-green-400 font-medium">
+                  Transmission successful. I will get back to you soon.
+                </p>
+              )}
+              {submitStatus === "error" && (
+                <p className="text-sm text-red-400 font-medium">
+                  Transmission failed. Please retry in a moment.
+                </p>
+              )}
             </form>
           </motion.div>
         </div>
