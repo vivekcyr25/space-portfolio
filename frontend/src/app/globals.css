@@ -110,6 +110,10 @@ p, span, h1, h2, h3, h4, a, button {
   @apply tracking-tight;
 }
 
+.font-space {
+  font-family: var(--font-space-grotesk), sans-serif;
+}
+
 .text-gradient {
   @apply text-transparent bg-clip-text bg-gradient-to-br from-white via-white/90 to-white/60;
 }
@@ -170,6 +174,20 @@ p, span, h1, h2, h3, h4, a, button {
 
 .animate-float {
   animation: float 8s ease-in-out infinite;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbit var(--duration, 60s) linear infinite;
+  will-change: transform;
 }
 
 /* Premium Liquid Glass Text Effect - Frosted Crystal Style */

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Syne } from "next/font/google";
+import { DM_Sans, Space_Grotesk, Syne } from "next/font/google";
 import "./globals.css";
 
 const dmSans = DM_Sans({ 
@@ -11,6 +11,12 @@ const dmSans = DM_Sans({
 const syne = Syne({
   subsets: ["latin"],
   variable: "--font-syne",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
   display: "swap",
 });
 
@@ -26,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${dmSans.variable} ${syne.variable} font-sans bg-[#030014] text-white overflow-x-hidden antialiased`}>
+      <body className={`${dmSans.variable} ${syne.variable} ${spaceGrotesk.variable} font-sans bg-[#030014] text-white overflow-x-hidden antialiased`}>
         {children}
       </body>
     </html>
