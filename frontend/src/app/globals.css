@@ -190,6 +190,42 @@ p, span, h1, h2, h3, h4, a, button {
   will-change: transform;
 }
 
+@keyframes liquid-shine-sweep {
+  0% {
+    transform: translateX(-180%) skewX(-22deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateX(220%) skewX(-22deg);
+    opacity: 0;
+  }
+}
+
+.liquid-shine::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.22) 45%,
+    rgba(175, 225, 255, 0.45) 50%,
+    rgba(205, 175, 255, 0.35) 55%,
+    transparent 75%
+  );
+  mix-blend-mode: screen;
+  animation: liquid-shine-sweep 3.8s ease-in-out infinite;
+}
+
 /* Premium Liquid Glass Text Effect - Frosted Crystal Style */
 .liquid-glass-text {
   position: relative;
