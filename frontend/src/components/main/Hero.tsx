@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { getAssetPath } from "@/utils/assetPath";
 
 const Hero = () => {
   return (
@@ -63,7 +64,7 @@ const Hero = () => {
               <div className="relative w-64 h-64 rounded-full glass-container flex items-center justify-center border-white/5 group overflow-hidden liquid-glass-border">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 via-transparent to-blue-500/10 blur-2xl group-hover:opacity-100 transition-opacity" />
                 <img 
-                  src="/profile.jpg" 
+                  src={getAssetPath("/profile.jpg")} 
                   alt="Vivek Sharma" 
                   className="relative z-10 w-full h-full object-cover rounded-full"
                 />

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, X } from "lucide-react";
+import { getAssetPath } from "@/utils/assetPath";
 
 const certificates = [
   {
@@ -78,7 +79,7 @@ const Certificates = () => {
             >
               <div className="relative h-64 overflow-hidden border-b border-white/5">
                 <img 
-                  src={cert.image} 
+                  src={getAssetPath(cert.image)} 
                   alt={cert.title} 
                   className="w-full h-full object-cover transition-transform duration-[1s] group-hover:scale-110 grayscale-[50%] group-hover:grayscale-0"
                 />
@@ -167,7 +168,7 @@ const Certificates = () => {
                   <div className="relative w-full mx-auto overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black">
                     <div className="relative" style={{ aspectRatio: '1.414' }}>
                       <img 
-                        src={selectedCert.image} 
+                        src={getAssetPath(selectedCert.image)} 
                         alt={selectedCert.title} 
                         className="w-full h-full object-contain"
                       />

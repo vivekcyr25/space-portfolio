@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
+import { getAssetPath } from "@/utils/assetPath";
 
 const projects = [
   {
@@ -57,7 +58,7 @@ const Projects = () => {
             >
               <div className="relative h-[350px] overflow-hidden">
                 <img
-                  src={project.image}
+                  src={getAssetPath(project.image)}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 grayscale-[40%] group-hover:grayscale-0"
                 />
