@@ -17,10 +17,12 @@ const StarsCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouse = useRef({ x: 0, y: 0, radius: 100 });
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+      setIsMobile(window.innerWidth < 768);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -38,7 +40,7 @@ const StarsCanvas = () => {
     canvas.height = window.innerHeight;
 
     let stars: Star[] = [];
-    const numberOfStars = 1000;
+    const numberOfStars = isMobile ? 300 : 1000;
 
     const init = () => {
       stars = [];
@@ -64,28 +66,31 @@ const StarsCanvas = () => {
       for (let i = 0; i < stars.length; i++) {
         const star = stars[i];
         
-        // Mouse interaction logic
-        const dx = mouse.current.x - star.x;
-        const dy = mouse.current.y - star.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const forceDirectionX = dx / distance;
-        const forceDirectionY = dy / distance;
-        const maxDistance = mouse.current.radius;
-        const force = (maxDistance - distance) / maxDistance;
-        const directionX = forceDirectionX * force * star.density;
-        const directionY = forceDirectionY * force * star.density;
-
-        if (distance < mouse.current.radius) {
-          star.x -= directionX;
-          star.y -= directionY;
-        } else {
-          if (star.x !== star.baseX) {
-            const dxBack = star.x - star.baseX;
-            star.x -= dxBack / 10;
-          }
-          if (star.y !== star.baseY) {
-            const dyBack = star.y - star.baseY;
-            star.y -= dyBack / 10;
+        if (!isMobile) {
+          // Mouse interaction logic - Skip on mobile for performance
+          const dx = mouse.current.x - star.x;
+          const dy = mouse.current.y - star.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < mouse.current.radius) {
+            const forceDirectionX = dx / distance;
+            const forceDirectionY = dy / distance;
+            const maxDistance = mouse.current.radius;
+            const force = (maxDistance - distance) / maxDistance;
+            const directionX = forceDirectionX * force * star.density;
+            const directionY = forceDirectionY * force * star.density;
+            
+            star.x -= directionX;
+            star.y -= directionY;
+          } else {
+            if (star.x !== star.baseX) {
+              const dxBack = star.x - star.baseX;
+              star.x -= dxBack / 10;
+            }
+            if (star.y !== star.baseY) {
+              const dyBack = star.y - star.baseY;
+              star.y -= dyBack / 10;
+            }
           }
         }
 

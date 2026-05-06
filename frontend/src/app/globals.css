@@ -427,6 +427,49 @@ p, span, h1, h2, h3, h4, a, button {
     0 0 45px rgba(146, 105, 255, 0.34);
 }
 
+@media (max-width: 768px) {
+  .glass-container, .liquid-glass, .glass-card, .backdrop-blur-md, .backdrop-blur-2xl, .backdrop-blur-3xl {
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+
+  .liquid-glass::before {
+    animation-duration: 20s;
+    opacity: 0.05;
+  }
+
+  .hero-title-tech {
+    text-shadow: 0 0 10px rgba(138, 92, 246, 0.3);
+  }
+
+  .liquid-glass-text {
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    filter: none;
+  }
+
+  .liquid-glass-border {
+    animation: liquid-glass-morph 8s ease-in-out infinite;
+    background-size: 300% 100%;
+  }
+
+  .animate-float {
+    animation-duration: 12s;
+  }
+
+  .holographic-overlay {
+    display: none;
+  }
+
+  .liquid-shine::before {
+    animation-duration: 6s;
+  }
+
+  /* Disable hover text shadow on mobile to prevent layout thrashing */
+  *:hover > p, *:hover > span, h1:hover, h2:hover, h3:hover, h4:hover, a:hover, button:hover {
+    text-shadow: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .liquid-text,
   .liquid-text-subtle {
