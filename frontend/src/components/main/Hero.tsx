@@ -53,25 +53,25 @@ const Hero = () => {
   }, [phase, titleIndex]);
 
   return (
-    <section className="relative w-full min-h-[90vh] flex items-center pt-20 overflow-hidden nebula-bg">
+    <section className="relative w-full min-h-[85vh] md:min-h-[90vh] flex items-center pt-24 md:pt-20 overflow-hidden nebula-bg">
       {/* Background Holographic Overlay */}
       <div className="absolute inset-0 z-0 h-full w-full holographic-overlay opacity-10" />
 
       <div className="content-wrapper">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col gap-6 relative z-10"
+            className="flex flex-col gap-5 md:gap-6 relative z-10"
           >
-            <div className="flex items-center gap-3 px-4 py-1.5 rounded-full border border-white/5 bg-white/5 w-fit backdrop-blur-2xl">
+            <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 rounded-full border border-white/5 bg-white/5 w-fit backdrop-blur-2xl">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-500 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-purple-500"></span>
               </span>
-              <span className="text-[8px] font-bold tracking-[0.4em] text-white/40 uppercase">Neural Interface Online</span>
+              <span className="text-[7px] sm:text-[8px] font-bold tracking-[0.28em] sm:tracking-[0.4em] text-white/40 uppercase">Neural Interface Online</span>
             </div>
 
             <div className="flex flex-col gap-1">
@@ -82,7 +82,7 @@ const Hero = () => {
                   animate={{ opacity: 1, x: phase === "swipe" ? 40 : 0 }}
                   exit={{ opacity: 0, x: -40 }}
                   transition={{ duration: 0.55, ease: "easeInOut" }}
-                  className="font-space hero-title-tech text-3xl md:text-5xl lg:text-7xl font-black leading-tight text-white min-h-[1.4em]"
+                  className="font-space hero-title-tech text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black leading-tight text-white min-h-[1.7em] sm:min-h-[1.5em] md:min-h-[1.4em]"
                 >
                   <span className="text-purple-gradient">{typedText}</span>
                   {phase === "typing" && (
@@ -98,7 +98,7 @@ const Hero = () => {
               </AnimatePresence>
             </div>
 
-            <p className="text-gray-400 text-base md:text-lg max-w-lg leading-relaxed font-medium">
+            <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-lg leading-relaxed font-medium">
               Full-Stack Developer & AI Enthusiast engineering <span className="text-white">futuristic digital experiences</span> and intelligent web systems with cinematic precision.
             </p>
 
@@ -150,7 +150,7 @@ const Hero = () => {
       </div>
 
       {/* Futuristic Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20">
+      <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-3 z-20">
         <div className="w-[1px] h-8 bg-gradient-to-b from-purple-500 to-transparent animate-pulse" />
         <span className="text-[7px] font-bold uppercase tracking-[0.5em] text-white/20">Initialize Descent</span>
       </div>
