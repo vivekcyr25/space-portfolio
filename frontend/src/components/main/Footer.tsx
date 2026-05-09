@@ -31,6 +31,12 @@ const Footer = () => {
                 {link}
               </a>
             ))}
+            <button 
+              onClick={() => alert("Terms of Use\\n\\nThis portfolio and its contents are the intellectual property of Vivek Sharma.\\nDesigned for demonstration purposes. Unauthorized replication is prohibited.")}
+              className="text-[10px] font-black uppercase tracking-[0.4em] transition-all hover:tracking-[0.6em] liquid-text liquid-text-subtle liquid-text-hover cursor-pointer"
+            >
+              Terms of Use
+            </button>
           </div>
 
           {/* System Info */}

@@ -11,12 +11,14 @@ const projects = [
     desc: "A futuristic student analytics dashboard featuring GPA calculation, subject tracking, and dynamic charts with local persistence.",
     tech: ["Next.js", "Chart.js", "TailwindCSS", "localStorage"],
     image: "/projects/student-portal.png",
+    link: "https://vivekcyr25.github.io/APIS-Academic-Intelligence-System/",
   },
   {
     title: "Personal Portfolio System",
     desc: "A cinematic space-themed developer portfolio engineered with immersive UI systems and responsive futuristic architecture.",
     tech: ["React.js", "TailwindCSS", "Framer Motion"],
     image: "/projects/project-high-tech.png",
+    link: "https://vivekcyr25.github.io/Personal-website/",
   },
   {
     title: "AI Productivity Workspace",
@@ -54,7 +56,8 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: idx * 0.1 }}
-              className="glass-card group flex flex-col h-full bg-black/10"
+              className={`glass-card group flex flex-col h-full bg-black/10 ${project.link ? 'cursor-pointer' : ''}`}
+              onClick={() => project.link && window.open(project.link, '_blank', 'noopener,noreferrer')}
             >
               <div className="relative h-[350px] overflow-hidden">
                 <img
