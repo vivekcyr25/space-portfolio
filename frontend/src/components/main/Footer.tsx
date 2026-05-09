@@ -9,22 +9,22 @@ const Footer = () => {
   return (
     <footer className="relative w-full py-20 border-t border-white/5 bg-black/60 backdrop-blur-2xl">
       <div className="content-wrapper">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 items-center text-center md:text-left">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12 items-center text-center lg:text-left">
           {/* Branding */}
           <div className="flex flex-col gap-6">
-            <a href="#" className="flex items-center justify-center md:justify-start gap-4 group">
+            <a href="#" className="flex items-center justify-center lg:justify-start gap-4 group">
               <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center font-black text-xl group-hover:rotate-12 transition-transform shadow-[0_0_20px_rgba(112,66,248,0.4)]">
                 V
               </div>
               <span className="heading-syne text-xl font-black tracking-tighter liquid-text liquid-text-strong liquid-text-hover">VIVEK <span className="liquid-text liquid-text-strong liquid-text-hover">SHARMA</span></span>
             </a>
-            <p className="text-sm max-w-xs mx-auto md:mx-0 font-bold leading-relaxed uppercase tracking-wider liquid-text liquid-text-subtle liquid-text-hover">
+            <p className="text-sm max-w-xs mx-auto lg:mx-0 font-bold leading-relaxed uppercase tracking-wider liquid-text liquid-text-subtle liquid-text-hover">
               Architecting the next generation of high-performance digital ecosystems.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div className="flex flex-wrap lg:flex-nowrap justify-center gap-6 md:gap-8">
+          <div className="flex flex-wrap lg:flex-nowrap justify-center gap-4 md:gap-6 lg:gap-5">
             {["About", "Skills", "Projects", "Achievements"].map((link) => (
               <a 
                 key={link} 
