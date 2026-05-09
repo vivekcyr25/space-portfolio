@@ -1,8 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { X } from "lucide-react";
 
 const Footer = () => {
+  const [showTerms, setShowTerms] = useState(false);
+
   return (
     <footer className="relative w-full py-20 border-t border-white/5 bg-black/60 backdrop-blur-2xl">
       <div className="content-wrapper">
@@ -21,19 +24,19 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="flex flex-wrap justify-center gap-12">
+          <div className="flex flex-wrap lg:flex-nowrap justify-center gap-6 md:gap-8">
             {["About", "Skills", "Projects", "Achievements"].map((link) => (
               <a 
                 key={link} 
                 href={`#${link.toLowerCase()}`} 
-                className="text-[10px] font-black uppercase tracking-[0.4em] transition-all hover:tracking-[0.6em] liquid-text liquid-text-subtle liquid-text-hover"
+                className="text-[10px] font-black uppercase tracking-[0.4em] transition-all hover:tracking-[0.6em] liquid-text liquid-text-subtle liquid-text-hover whitespace-nowrap"
               >
                 {link}
               </a>
             ))}
             <button 
-              onClick={() => alert("Terms of Use\\n\\nThis portfolio and its contents are the intellectual property of Vivek Sharma.\\nDesigned for demonstration purposes. Unauthorized replication is prohibited.")}
-              className="text-[10px] font-black uppercase tracking-[0.4em] transition-all hover:tracking-[0.6em] liquid-text liquid-text-subtle liquid-text-hover cursor-pointer"
+              onClick={() => setShowTerms(true)}
+              className="text-[10px] font-black uppercase tracking-[0.4em] transition-all hover:tracking-[0.6em] liquid-text liquid-text-subtle liquid-text-hover cursor-pointer whitespace-nowrap"
             >
               Terms of Use
             </button>
@@ -74,6 +77,32 @@ const Footer = () => {
         {/* Bottom Decorative Line */}
         <div className="mt-20 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500/10 to-transparent" />
       </div>
+
+      {/* Terms Modal */}
+      {showTerms && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+          <div className="glass-card relative max-w-lg w-full p-8 border border-purple-500/20 bg-[#0a0a0a] shadow-[0_0_40px_rgba(112,66,248,0.2)]">
+            <button 
+              onClick={() => setShowTerms(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+            >
+              <X size={24} />
+            </button>
+            <h3 className="heading-syne text-2xl font-black mb-6 text-purple-400 uppercase tracking-widest">Terms of Use</h3>
+            <div className="text-gray-300 space-y-4 text-sm leading-relaxed font-medium">
+              <p>
+                This portfolio and its contents are the intellectual property of Vivek Sharma. 
+              </p>
+              <p>
+                The designs, code architectures, and projects presented here are meant for demonstration and evaluation purposes. Unauthorized replication, distribution, or commercial use without explicit permission is strictly prohibited.
+              </p>
+              <p className="text-purple-500/80 italic font-bold">
+                All Systems Nominal.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 };

@@ -80,7 +80,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-[9px] uppercase font-black tracking-[0.4em] text-gray-600 mb-2">Base Coordinates</p>
-                  <p className="text-white text-base sm:text-xl font-bold heading-syne">New Delhi, India</p>
+                  <p className="text-white text-base sm:text-xl font-bold heading-syne">Himachal Pradesh, India</p>
                 </div>
               </div>
             </div>
